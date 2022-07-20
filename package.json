@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/D3R50N/Quizzy/issues"
   },
-  "homepage": "https://github.com/D3R50N/Quizzy#readme"
+  "homepage": "https://github.com/D3R50N/Quizzy#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dom": "^0.0.3"
+  }
 }
