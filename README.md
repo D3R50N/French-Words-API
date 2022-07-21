@@ -1,4 +1,4 @@
-# FRENCH WORDS API
+# \<French Words API\/>
 
 ## Generate a JSON File that contains many French Words ##
 
