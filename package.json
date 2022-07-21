@@ -20,6 +20,10 @@
   "homepage": "https://github.com/D3R50N/Quizzy#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "dom-parser": "^0.1.6",
+    "node-html-parser": "^5.3.3"
+  },
+  "devDependencies": {
     "dom": "^0.0.3"
   }
 }
