@@ -3,7 +3,7 @@
 ## Generate a JSON File that contains many French Words ##
 
 This program uses webscrapping. </br>
-Running <a href="generally.js">the generation script</a> will output <a href="log.json">this JSON file</a>.
+Running <a href="generate.js">the generation script</a> will output <a href="log.json">this JSON file</a>.
 
 ### The content of the output file is generated from the <a href="https://fr.wiktionary.org/wiki/Wiktionnaire:Liste_de_1750_mots_fran%C3%A7ais_les_plus_courants">Wiktionary</a> ###
 
