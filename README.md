@@ -1,4 +1,4 @@
-# GuessWordJs
+# FRENCH WORDS API
 ## Generate a JSON File that contains many French Words ##
 This program uses webscrapping. </br>
 Running <a href="index.js">the script</a> will output <a href="log.json">this JSON file</a>.
