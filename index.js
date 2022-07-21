@@ -2,7 +2,7 @@ const { url } = require('./config');
 
 const axios = require('axios').default;
 const { log, clear } = require('console');
-const parser = require('node-html-parser');
+const  {parse} = require('node-html-parser');
 
 
 
@@ -41,7 +41,7 @@ axios
 
 
 function treatData(dom_data) {
-    let document = parser.parse(dom_data);
+    let document = parse(dom_data);
 
     let headLines = document.querySelectorAll('.mw-headline');
     let container = document.querySelector('#mw-content-text').firstChild;
@@ -51,7 +51,7 @@ function treatData(dom_data) {
     let sections = container.childNodes;
     for (let index = 0; index < sections.length; index++) {
         const element = sections[index];
-        log(element.structure)
+        log(element.tagName)
     }
 
     // let categories = sections.at(1).getElementsByTagName('b');
