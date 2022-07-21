@@ -2,7 +2,8 @@ const { url } = require('./config');
 
 const axios = require('axios').default;
 const { log, clear } = require('console');
-const  {parse} = require('node-html-parser');
+const { parse } = require('node-html-parser');
+const fs = require('fs');
 
 
 
@@ -16,11 +17,14 @@ var interval = setInterval(() => {
 
 /*******NOTE Class */
 class Section {
-    constructor() {
-
+    constructor(title = '') {
+        this.title = title;
+        this.content = [];
+        // all_sections.push(this);
     }
 }
-
+var all_sections = [new Section()];
+all_sections = [];
 
 
 
@@ -43,19 +47,52 @@ axios
 function treatData(dom_data) {
     let document = parse(dom_data);
 
-    let headLines = document.querySelectorAll('.mw-headline');
-    let container = document.querySelector('#mw-content-text').firstChild;
+    let headLines = document.querySelectorAll('h3 > .mw-headline');
+
+    headLines.forEach((hdl) => {
+        all_sections.push(new Section(hdl.text));
+    })
+    let counter = 0;
+    let container = document.querySelector('#mw-content-text').querySelectorAll('.mw-parser-output')[0];
 
 
-
-    let sections = container.childNodes;
+    let sections = container.querySelectorAll(':scope > ');
     for (let index = 0; index < sections.length; index++) {
         const element = sections[index];
-        log(element.tagName)
-    }
+        if (element.tagName != 'P' || element.text.includes('Liste') || element.text.includes('portière') || element.text.includes('voyager'))
+            continue;
 
-    // let categories = sections.at(1).getElementsByTagName('b');
-    // log(getAllTextContent(categories));
+        if (counter < all_sections.length)
+            all_sections[counter].content.push(element.text);
+
+        if (element.nextElementSibling == undefined || element.nextElementSibling.tagName != 'P') {
+            if (counter < headLines.length)
+                all_sections[counter].title = headLines[counter].text;
+            counter++;
+        }
+    }
+    fs.writeFile('log.json', '[\n' + all_sections.map((section, index) => {
+        let content = "";
+        section.content.forEach((c,key) => {
+            if(c.includes(':'))
+                content += `
+            {
+                "${c.split(' :')[0]}" : "${c.split(' :')[1].split('\n').join().trim()}"
+            }${key < section.content.length-1 ?',':''}
+            `;
+        })
+        return `
+        {
+            "title" : "${section.title}",
+            "content" : [
+                ${content}
+            ]
+        }
+
+        `;
+    }).toString()+'\n]', () => {
+        log("Fini")
+    })
 }
 
 function getAllTextContent(elements = []) {
