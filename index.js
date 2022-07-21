@@ -20,11 +20,9 @@ class Section {
     constructor(title = '') {
         this.title = title;
         this.content = [];
-        // all_sections.push(this);
     }
 }
-var all_sections = [new Section()];
-all_sections = [];
+var all_sections =[]; // Array of sections
 
 
 
