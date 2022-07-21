@@ -10,7 +10,7 @@ Running <a href="generate.js">the generation script</a> will output <a href="log
 I assume that if its DOM structure changes, the generation will surely fail.</br>
 Save the <a href="log.json">log.json</a> file before regenerate.
 
-## Generating JSON File ##
+### Generating JSON File ###
 
 > <code>npm run generate</code> </br>
 > Wait until it gets all data
